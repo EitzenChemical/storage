@@ -18,17 +18,21 @@ namespace storage.Services
 
     public class DbService : IDbService
     {
+        private const string dbConnection = "mongodb+srv://pudge:pudge@cluster0.z1fzn.mongodb.net/testDb?retryWrites=true&w=majority";
+        private const string dbName = "testDb";
+        private const string dbCollectionName = "testCollection";
+
         IMongoCollection<BsonDocument> _collection;
         IMongoDatabase _database;
         MongoClient _client;
+        
         public DbService() {
-            _client = new MongoClient("mongodb+srv://pudge:pudge@cluster0.z1fzn.mongodb.net/testDb?retryWrites=true&w=majority");
-            _database = _client.GetDatabase("testDb");
-            _collection = _database.GetCollection<BsonDocument>("testCollection");     
+            _client = new MongoClient(dbConnection);
+            _database = _client.GetDatabase(dbName);
+            _collection = _database.GetCollection<BsonDocument>(dbCollectionName);     
         }
 
         public string GetValue(string key) {
-            _collection = _database.GetCollection<BsonDocument>("testCollection");
             var filter = new BsonDocument("key", key);
             var result = _collection.Find(filter).FirstOrDefault();
             if (result != null)
@@ -40,21 +44,20 @@ namespace storage.Services
 
         public void DeleteValue(string key)
         {
-            _collection = _database.GetCollection<BsonDocument>("testCollection");
             var filter = new BsonDocument("key", key);
             _collection.DeleteOne(filter);
+            _collection = _database.GetCollection<BsonDocument>(dbCollectionName);
         }
 
         public void SetValue(string key, string value)
         {
-            _collection = _database.GetCollection<BsonDocument>("testCollection");
-            
             var keyExist = _collection.Find(new BsonDocument("key", key)).FirstOrDefault() != null;
 
             var newDoc = new BsonDocument(new Dictionary<string, string>() {
                 { "key", key},
                 { "value", value }
             });
+
             if (keyExist) {
                 var filter = new BsonDocument("key", key);
                 _collection.ReplaceOne(filter, newDoc);
@@ -63,11 +66,11 @@ namespace storage.Services
             {
                 _collection.InsertOne(newDoc);
             }
+            _collection = _database.GetCollection<BsonDocument>(dbCollectionName);
         }
 
         public List<string> GetKeys()
         {
-            _collection = _database.GetCollection<BsonDocument>("testCollection");
             var keyDocs = _collection.Find(_ => true).ToList();
             var result = keyDocs.Select(d => d.GetValue("key").ToString());
             return result.ToList();
