@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "storage", "storage\storage.csproj", "{FEF8C40C-A9BE-4F85-AA53-22847EB7AB37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{C9CF29EF-D0D2-40A4-B672-556EAFA735FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEF8C40C-A9BE-4F85-AA53-22847EB7AB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEF8C40C-A9BE-4F85-AA53-22847EB7AB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEF8C40C-A9BE-4F85-AA53-22847EB7AB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEF8C40C-A9BE-4F85-AA53-22847EB7AB37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CF29EF-D0D2-40A4-B672-556EAFA735FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CF29EF-D0D2-40A4-B672-556EAFA735FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CF29EF-D0D2-40A4-B672-556EAFA735FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CF29EF-D0D2-40A4-B672-556EAFA735FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61EAB6E6-7A51-4ED6-BCCF-875FFEF0966C}
+	EndGlobalSection
+EndGlobal
